@@ -1,0 +1,161 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.container {
+	background: linear-gradient(290deg, #00d9ff, #0084ff);
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.wrapper {
+	position: relative;
+	width: 80%;
+	height: 70%;
+	margin: 10vh auto;
+	background: rgba(255, 255, 255, 0.75);
+	border-radius: 2em;
+	padding: 1em;
+	overflow: hidden;
+}
+.question > p {
+	margin: 1em 1em;
+	font: bold 1.2em;
+}
+input[type='radio'] {
+	display: none;
+}
+label {
+	position: relative;
+	color: dodgerblue;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	border: 2px solid dodgerblue;
+	padding: 10px 20px;
+	margin: 6px 11px;
+	min-width: 80%;
+	border-radius: 8px;
+	transition: 0.5s;
+}
+label:hover {
+	background: rgba(30, 143, 255, 0.2);
+}
+input[type='radio']:checked + label {
+	background: dodgerblue;
+	color: white;
+}
+button {
+	border: none;
+	outline: none;
+	background: none;
+	transition: 0.3s;
+}
+.submit {
+	display: flex;
+	justify-content: end;
+}
+.submit > button {
+	background: dodgerblue;
+	color: white;
+	font-size: 1.2rem;
+	padding: 0.5em 2em;
+	margin: 0.4em 3em;
+	border-radius: 0.7em;
+}
+.submit > button:hover {
+	transform: scale(1.1);
+}
+.submit > button:disabled,
+.submit > button:disabled:hover {
+	background: grey;
+	transform: none;
+}
+.progress {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	background: white;
+	height: 2%;
+}
+.progress > span {
+	position: relative;
+	display: block;
+	height: 100%;
+	background: #0084ff;
+}
+/* --------------- results part --------------- */
+.resultBox {
+	padding: 1em;
+}
+.remark {
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 1em;
+	border-bottom: 1px solid #000;
+}
+.result {
+	padding: 0.5em;
+	border-bottom: 1px solid #000;
+}
+.result > ol,
+.result > ol > li {
+	padding-top: 0.5em;
+}
+.correct {
+	font-weight: bold;
+	font-style: italic;
+	color: green;
+}
+.incorrect {
+	text-decoration: underline;
+	color: red;
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.buttons > button {
+  font-size: 1.2em;
+  padding: 0.3em 1em;
+  margin-top: 1em;
+  border-radius: 0.5em;
+  transition: 0.5s;
+}
+.retry {
+  color: #0084ff;
+  border: 2px solid #0084ff;
+}
+.retry:hover {
+  color: white;
+  background: #0084ff;
+}
+.save {
+  color: white;
+  background: #0084ff;
+  font-weight: bold;
+  text-decoration: underline;
+  border: 2px transparent;
+}
+.save:hover{
+  color: #0084ff;
+  background: none;
+  border: 2px solid #0084ff;
+}
+.canvas{
+  position: fixed;
+  top: 20%;
+  left: 20%;
+  width: 60vw;
+  height: 60vh;
+  overflow: hidden;
+  object-fit: contain;
+}
+.canvas > canvas, .canvas img {
+  width: 100% !important;
+  height: 100% !important;
+}
