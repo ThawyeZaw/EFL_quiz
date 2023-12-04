@@ -119,7 +119,7 @@ button {
 	color: green;
 }
 .incorrect {
-	text-decoration: underline;
+	text-decoration: line-through;
 	color: red;
 }
 .buttons {

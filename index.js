@@ -89,10 +89,43 @@ const Questons_data = [
       "The view of light and shadows",
       "The wall"],
     correctAns: "The wall"
+  },
+  {
+    question: `I'm in the middle of a battle: the worst you can imagine. I had failed this battle for years, not even once nor twice but multiple time. However, it is time to slay the demon: the entrance test.
+    <br><br>What type of irony is the paragraph?`,
+    options: [
+      "Situational irony",
+      "Dramatic irony",
+      "Verbal irony",
+      "None of the above"],
+    correctAns: "Dramatic irony"
+  },
+  {
+    question: "What does the prefix 'ped' mean?",
+    options: [
+      "Foot",
+      "Ground",
+      "Road",
+      "Surface"],
+    correctAns: "Foot"
+  },
+  {
+    question: `It was a hallway with hollow silence. Bang! Bang! Bang!
+    <br><br> Apart from "Assonance" how many persuasive language has been used?`,
+    options: [
+      "5",
+      "6",
+      "3",
+      "4e"],
+    correctAns: "5"
   }
 ]
 
-let num = 0, trueAnswer = "", questionLimit = 6, Questons = []
+let num = 0, 
+trueAnswer = "", 
+questionLimit = 5, 
+Questons = [],
+results = ""
 
 /* --------- display question on load --------- */
 window.onload = () => {
@@ -120,8 +153,9 @@ function ramdomzie() {
 const wrapper = document.querySelector('.wrapper'),
   DisplayNext = () => {
     ramdomzie()
+    console.log("next")
     let input_data = Questons[num],
-    /* ------ add options and it values to it ----- */
+      /* ------ add options and it values to it ----- */
       option = ""
     input_data.options.forEach(q => {
       let p = q.replace(/\"/g, "~")
@@ -129,8 +163,8 @@ const wrapper = document.querySelector('.wrapper'),
     <input type="radio" name="options" id="${p}" value="${p}" />
     <label for="${p}">${q}</label><br />`
     })
-  /* ------------- display the quiz ------------- */
-    wrapper.innerHTML = `
+    /* ------------- display the quiz ------------- */
+    document.querySelector('.wrapper').innerHTML = `
   <div class="question">
     <p>${input_data.question}</p>
   </div>
@@ -141,7 +175,7 @@ const wrapper = document.querySelector('.wrapper'),
     <button onclick="Next()" disabled>Next</button>
   </div>`
     let width = Math.round(num / questionLimit * 100)
-    wrapper.innerHTML += `
+    document.querySelector('.wrapper').innerHTML += `
   <div class="progress">
     <span style="width:${width}%"></span>
   </div>`
@@ -174,15 +208,15 @@ const Next = () => {
     correctAns: trueAnswer,
     chosenAns: chosenValue
   })
-  console.log(output_data)
   DisplayNext()
+  console.log(output_data, num)
   check()
 }
 
 /* ---- check if all questions are complted --- */
 /* ----------- then show the results ---------- */
 function check() {
-  if (output_data.length == questionLimit - 1) {
+  if (num == questionLimit) {
     let button = document.querySelector(".submit button")
     button.innerHTML = "Finish"
     button.addEventListener("click", () => {
@@ -193,7 +227,7 @@ function check() {
         }
       })
       /* -------- show the results and marks -------- */
-      wrapper.innerHTML = `
+      document.querySelector('.wrapper').innerHTML = `
       <div class="resultBox">
         <section class="remark">
 					<p>Remark</p>
@@ -210,6 +244,7 @@ function check() {
           if (option == q.correctAns) { marked = "correct" }
           options += `<li class="${marked}">${o}</li>`
         })
+        console.log(resultBox)
         resultBox.innerHTML += `
 					<div class="result">
 						<h3>${`${q.questionNum}. ${q.question}`}</h3>
@@ -218,43 +253,41 @@ function check() {
 						</ol>
 					</div>`
       })
+      /* ----- add retry and save results button ---- */
       resultBox.innerHTML += `
       <div class="buttons">
         <button onclick="retry()" class="retry">Retry</button>
         <button onclick="save()" class="save">Save your results</button>
       </div>
       `
+      /* --------- Convert result to canvas --------- */
+      html2canvas(document.body).then(function (canvas) {
+        results = canvas
+      })
+      console.log("done")
     })
   }
 }
 
 /* -------------- retry if u want ------------- */
 function retry() {
-  console.log(num)
-  console.log(output_data)
-  // wrapper.innerHTML = ""
-  // ramdomzie()
-  location.reload()
-  console.log(num)
-  console.log(output_data)
-  // console.log("clicked")
+  num = 0 
+  output_data = []
+  DisplayNext()
 }
-
+/* ---- save ur results as image if u want ---- */
 function save() {
-  html2canvas(document.body).then(function (canvas) {
-    let container = document.querySelector('.container')
-    // console.log(canvas.toDataURL("image/png"))
-    let image = canvas.toDataURL("image/png")
-    container.innerHTML += `
-    <div class="canvas">
-      <img src="${image}" alt="SOMETHING WENT WRONG!" />
-      <div class="saveButtons">
-      <a href="${image}" download onclick="hide()">Save image</a>
-      <button onclick="hide()">Back</button>
-      </div>
-    </div>`
-  });
+  let container = document.querySelector('.container')
+  let image = results.toDataURL("image/png")
+  container.innerHTML += `
+      <div class="canvas">
+        <img src="${image}" alt="We can't convert to image" />
+        <div class="saveButtons">
+         <a href="${image}" download onclick="hide()">Save image</a>
+         <button onclick="hide()">Back</button>
+        </div>
+      </div>`
 }
 function hide() {
-  document.querySelector(".canvas").style.display = "none"
+  document.querySelector(".canvas").remove()
 }
