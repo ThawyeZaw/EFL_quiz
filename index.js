@@ -116,7 +116,7 @@ const Questons_data = [
       "5",
       "6",
       "3",
-      "4e"],
+      "4"],
     correctAns: "5"
   }
 ]
@@ -128,7 +128,7 @@ Questons = [],
 results = ""
 
 /* --------- display question on load --------- */
-window.onload = () => {
+function start() {
   ramdomzie()
   DisplayNext()
 }

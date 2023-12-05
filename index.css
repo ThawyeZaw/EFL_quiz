@@ -21,6 +21,52 @@
 	padding: 1em;
 	overflow: hidden;
 }
+.logo {
+	position: fixed;
+	top: 0;
+	left: 0;
+	margin: 1rem;
+	padding: 0.6em 1em;
+	border-radius: 1em;
+	background: rgba(255, 255, 255, 0.5);
+	text-decoration: none;
+	color: dodgerblue;
+}
+
+h1 {
+	text-align: center;
+}
+.startButtons {
+	margin: 2rem 0;
+	display: flex;
+	justify-content: space-evenly;
+}
+.startButtons button {
+	padding: 0.5em 0.5em;
+	color: dodgerblue;
+	font-weight: bold;
+	border: 3px solid dodgerblue;
+	border-radius: 1em;
+	transition: 0.4s;
+}
+.startButtons button:hover,
+.startButtons button:hover > a {
+	color: white;
+	background: dodgerblue;
+}
+.startButtons a {
+	text-decoration: none;
+	color: dodgerblue;
+	background: none;
+}
+@media screen and (min-width: 600px) {
+	.startButtons button {
+		padding: 0.8em 1.2em;
+		margin-top: 1em;
+		letter-spacing: 2px;
+	}
+}
+/* ---------------- quiz styles --------------- */
 .question > p {
 	margin: 1em 1em;
 	font-size: 1.2em;
@@ -123,51 +169,58 @@ button {
 	color: red;
 }
 .buttons {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 .buttons > button {
-  font-size: 1.2em;
-  padding: 0.3em 1em;
-  margin-top: 1em;
-  border-radius: 0.5em;
-  transition: 0.5s;
+	padding: 0.2em 0.7em;
+	margin-top: 1em;
+	border-radius: 0.5em;
+	transition: 0.5s;
+}
+@media screen and (min-width: 600px) {
+	.buttons > button {
+		font-size: 1.2em;
+		padding: 0.5em 1em;
+		margin-top: 1em;
+	}
 }
 .retry {
-  color: #0084ff;
-  border: 2px solid #0084ff;
+	color: #0084ff;
+	border: 2px solid #0084ff;
 }
 .retry:hover {
-  color: white;
-  background: #0084ff;
+	color: white;
+	background: #0084ff;
 }
 .save {
-  color: white;
-  background: #0084ff;
-  font-weight: bold;
-  text-decoration: underline;
-  border: 2px transparent;
+	color: white;
+	background: #0084ff;
+	font-weight: bold;
+	text-decoration: underline;
+	border: 2px transparent;
 }
-.save:hover{
-  color: #0084ff;
-  background: none;
-  border: 2px solid #0084ff;
+.save:hover {
+	color: #0084ff;
+	background: none;
+	border: 2px solid #0084ff;
 }
-.canvas{
-  position: fixed;
-  top: 20%;
-  left: 20%;
-  width: 60vw;
-  height: 70vh;
-  overflow: hidden;
-  object-fit: contain;
+.canvas {
+	position: fixed;
+	top: 20%;
+	left: 20%;
+	width: 60vw;
+	height: 70vh;
+	overflow: hidden;
+	object-fit: contain;
 	background: white;
 	border: 1px solid #000;
 	border-radius: 1em;
 }
-.canvas > canvas, .canvas img {
-  width: 100% !important;
-  height: 90% !important;
+.canvas > canvas,
+.canvas img {
+	width: 100% !important;
+	height: 90% !important;
 }
 .saveButtons {
 	display: flex;
@@ -178,10 +231,10 @@ button {
 .saveButtons > button {
 	text-align: center;
 	color: white;
-  background: #0084ff;
-  font-weight: bold;
-  text-decoration: underline;
-  border: 2px transparent;
+	background: #0084ff;
+	font-weight: bold;
+	text-decoration: underline;
+	border: 2px transparent;
 	margin: 1vh 4vw;
 	border-radius: 0.4em;
 	height: 50%;
